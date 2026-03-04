@@ -34,3 +34,9 @@ spring:
               - Path=/payments/**
             filters:
               - StripPrefix=1
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
