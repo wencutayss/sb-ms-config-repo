@@ -5,6 +5,7 @@ spring:
   cloud:
     gateway:
       mvc:
+        enabled: true
         routes:
           - id: user-service
             uri: lb://USER-SERVICE
