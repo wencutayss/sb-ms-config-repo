@@ -4,20 +4,32 @@ server:
 spring:
   cloud:
     gateway:
-      routes:
-        - id: user-service
-          uri: lb://USER-SERVICE
-          predicates:
-            - Path=/users/**
-        - id: product-service
-          uri: lb://PRODUCT-SERVICE
-          predicates:
-            - Path=/products/**
-        - id: order-service
-          uri: lb://ORDER-SERVICE
-          predicates:
-            - Path=/orders/**
-        - id: payment-service
-          uri: lb://PAYMENT-SERVICE
-          predicates:
-            - Path=/payments/**
+      mvc:
+        routes:
+          - id: user-service
+            uri: lb://USER-SERVICE
+            predicates:
+              - Path=/users/**
+            filters:
+              - StripPrefix=1
+
+          - id: product-service
+            uri: lb://PRODUCT-SERVICE
+            predicates:
+              - Path=/products/**
+            filters:
+              - StripPrefix=1
+
+          - id: order-service
+            uri: lb://ORDER-SERVICE
+            predicates:
+              - Path=/orders/**
+            filters:
+              - StripPrefix=1
+
+          - id: payment-service
+            uri: lb://PAYMENT-SERVICE
+            predicates:
+              - Path=/payments/**
+            filters:
+              - StripPrefix=1
